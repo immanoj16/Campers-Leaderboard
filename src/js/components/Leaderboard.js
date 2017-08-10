@@ -10,17 +10,19 @@ class Leaderboard extends Component {
         }
     }
 
-    componentDidMount () {
-
+    componentDidMount() {
         this.fetchData()
-        console.log(this.state.campers);
     }
 
     fetchData () {
 
         fetch('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
             .then(response => response.json())
-            .then(parsedJson => console.log(parsedJson))
+            .then(parsedJson => {
+                this.setState({
+                    campers: parsedJson
+                })
+            })
             .catch(error => console.log("Parsing Failed ", error))
     }
 
