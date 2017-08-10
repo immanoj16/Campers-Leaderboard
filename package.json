@@ -4,7 +4,7 @@
   "description": "It is a camper leaderboard details.",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --open",
     "prod": "rimraf ./dist/* && webpack -p"
   },
   "author": "Manoj Kumar",
@@ -35,7 +35,6 @@
     "webpack-dev-server": "2.2.0"
   },
   "dependencies": {
-    "marked": "^0.3.6",
     "prop-types": "15.5.10",
     "react": "15.4.2",
     "react-dom": "15.4.2"
