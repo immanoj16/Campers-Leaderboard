@@ -10,7 +10,7 @@ class Leaderboard extends Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount () {
         this.fetchData()
     }
 
@@ -18,16 +18,24 @@ class Leaderboard extends Component {
 
         fetch('https://fcctop100.herokuapp.com/api/fccusers/top/recent')
             .then(response => response.json())
-            .then(parsedJson => {
-                this.setState({
-                    campers: parsedJson
-                })
-            })
+            .then(parsedJson => parsedJson.map((camper, id) => (
+                {
+                    id: id + 1,
+                    username: `${camper.username}`,
+                    img: `${camper.img}`,
+                    recent: `${camper.recent}`,
+                    alltime: `${camper.alltime}`
+                }
+            )))
+            .then(campers => this.setState({
+                campers,
+            }))
             .catch(error => console.log("Parsing Failed ", error))
     }
 
     render () {
-        const {campers} = this.state;
+        const { campers, id } = this.state;
+        console.log(campers.length);
         return (
             <div className="col-md-10 col-md-offset-1">
                 <h3>Leaderboard</h3>
@@ -43,13 +51,15 @@ class Leaderboard extends Component {
                     <tbody>
                         {
                             campers.length > 0 ? campers.map(camper => {
-                                const {username, img, recent, alltime} = camper;
-                                <tr>
-                                    <td style={{textAlign: 'left'}} scope="row">1</td>
-                                    <td style={{textAlign: 'left'}}>{username}</td>
-                                    <td>{recent}</td>
-                                    <td>{alltime}</td>
-                                </tr>
+                                const { id, username, img, recent, alltime } = camper;
+                                return (
+                                    <tr key={username}>
+                                        <td style={{textAlign: 'left'}} scope="row">{id}</td>
+                                        <td style={{textAlign: 'left'}}><a href={`https://www.freecodecamp.com/${username}`} target="_blank"><img src={img} /><span>{username}</span></a></td>
+                                        <td>{recent}</td>
+                                        <td>{alltime}</td>
+                                    </tr>
+                                )
                             }) : null
                         }
                     </tbody>

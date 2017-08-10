@@ -13,15 +13,28 @@ table {
 
 h3 {
     background-color: #006400;
-    font-size: 2em;
+    font-size: 1.7em;
     font-weight: 500;
     line-height: 1.1;
     color: white;
-    padding: 12px 20px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+	margin-bottom: 0;
 }
 
 th {
     padding: 8px;
     font-size: 1.5em;
+}
+
+img {
+	width: 40px;
+    border: 2px solid #006400;
+    border-radius: 4px;
+    max-height: 40px;
+    margin-right: 4px;
+}
+
+td {
+	font-size: 18px;
 }
