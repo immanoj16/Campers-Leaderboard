@@ -7,7 +7,7 @@
     npm install
     `
     
-  * To run the application
+  * To run the application, run
     `
     npm run dev
     `
